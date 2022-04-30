@@ -4,31 +4,28 @@ import com.javaseleniumtemplate.bases.PageBase;
 import org.openqa.selenium.By;
 
 public class LoginPage extends PageBase {
-    //Mapping
-    By usernameField = By.id("login");
-    By passwordField = By.id("password");
-    By loginButton = By.xpath("//button[@type='submit']");
-    By cookieButton = By.xpath("//*[@aria-label='dismiss cookie message']");
-    By errorMessageLabel = By.className("login-error");
+    //Mapping/
+    By campoEmail = By.id("email_create");
+    By botaoCriarNovaConta = By.id("SubmitCreate");
+    By mensagemErroEmailRepetido = By.id("create_account_error");
+    By mensagemErroEmailInvalido = By.id("create_account_error");
 
     //Actions
-    public void preenhcerUsuario(String usuario){
-        sendKeys(usernameField, usuario);
+    public void preencherEmail(String email){
+        sendKeys(campoEmail, email);
     }
 
-    public void preencherSenha(String senha){
-        sendKeys(passwordField, senha);
+    public void clicarEmCriarNovaConta(){
+        click(botaoCriarNovaConta);
     }
 
-    public void clicarEmLogin(){
-        click(loginButton);
+    public String retornarMensagemEmailRepetido(){
+        waitForElement(mensagemErroEmailRepetido);
+        return getText(mensagemErroEmailRepetido);
     }
 
-    public void clicarEmAceitarCookies(){
-        click(cookieButton);
-    }
-
-    public String retornaMensagemErroLogin(){
-        return getText(errorMessageLabel);
+    public String retornarMensagemEmailInvalido(){
+        waitForElement(mensagemErroEmailInvalido);
+        return getText(mensagemErroEmailInvalido);
     }
 }
