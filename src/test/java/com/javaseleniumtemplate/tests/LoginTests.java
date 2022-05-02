@@ -56,7 +56,7 @@ public class LoginTests extends TestBase {
     }
 
     @Test
-    public void criarUmaNovaConta(){
+    public void criarUmaNovaContaComSucesso(){
         //Objects instances
         loginPage = new LoginPage();
         loginFlows = new LoginFlows();

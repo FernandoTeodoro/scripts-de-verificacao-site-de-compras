@@ -23,7 +23,7 @@ public class CadastroTests extends TestBase {
 
     //Tests
     @Test
-    public void cadastrarUmPerfilFeminino(){
+    public void cadastrarUmNovoPerfilComSucesso(){
         //Objects instances
         loginPage = new LoginPage();
         loginFlows = new LoginFlows();
