@@ -4,6 +4,7 @@ import com.github.javafaker.Faker;
 import com.javaseleniumtemplate.GlobalParameters;
 import com.javaseleniumtemplate.bases.TestBase;
 import com.javaseleniumtemplate.flows.LoginFlows;
+import com.javaseleniumtemplate.pages.CadastroPage;
 import com.javaseleniumtemplate.pages.LoginPage;
 import org.junit.Assert;
 import org.junit.Test;
@@ -13,7 +14,8 @@ public class LoginTests extends TestBase {
     String URL_DEFAULT = GlobalParameters.URL_DEFAULT;
     LoginPage loginPage;
     LoginFlows loginFlows;
-    Faker faker = new Faker();
+    CadastroPage cadastroPage;
+    Faker faker;
 
     //Tests
     @Test
@@ -21,6 +23,7 @@ public class LoginTests extends TestBase {
         //Objects instances
         loginPage = new LoginPage();
         loginFlows = new LoginFlows();
+        faker = new Faker();
 
         //Parameteres
         String email = "emailteste@teste.com";
@@ -29,7 +32,6 @@ public class LoginTests extends TestBase {
 
         //Test
         loginPage.navigateTo(URL_DEFAULT + "?controller=authentication&back=my-account#account-creation");
-
         loginFlows.criarNovaConta(email);
 
         Assert.assertEquals(loginPage.retornarMensagemEmailRepetido(), mensagemEmailRepetido);
@@ -58,15 +60,18 @@ public class LoginTests extends TestBase {
         //Objects instances
         loginPage = new LoginPage();
         loginFlows = new LoginFlows();
+        cadastroPage = new CadastroPage();
+        faker = new Faker();
 
         //Parameteres
-        String email = "emailtetete@teste.com";
+        String email = faker.name().firstName() + faker.name().lastName() + "@teste.com";
 
         //Test
         loginPage.navigateTo(URL_DEFAULT + "?controller=authentication&back=my-account#account-creation");
-
         loginFlows.criarNovaConta(email);
 
+        cadastroPage.esperarCarregamentoDoFormulario();
 
+        Assert.assertEquals(cadastroPage.retornarEmailPresenteNoFormulario(), email);
     }
 }

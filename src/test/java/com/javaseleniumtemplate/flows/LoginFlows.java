@@ -12,7 +12,6 @@ public class LoginFlows {
     }
 
     //Flows
-
     public void criarNovaConta(String email){
         loginPage.preencherEmail(email);
         loginPage.clicarEmCriarNovaConta();

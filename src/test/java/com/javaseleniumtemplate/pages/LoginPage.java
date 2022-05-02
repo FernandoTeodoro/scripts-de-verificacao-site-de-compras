@@ -4,7 +4,7 @@ import com.javaseleniumtemplate.bases.PageBase;
 import org.openqa.selenium.By;
 
 public class LoginPage extends PageBase {
-    //Mapping/
+    //Mapping
     By campoEmail = By.id("email_create");
     By botaoCriarNovaConta = By.id("SubmitCreate");
     By mensagemErroEmailRepetido = By.id("create_account_error");
